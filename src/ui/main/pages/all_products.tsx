@@ -16,7 +16,7 @@ const products: Product[] = [
 const AllProductsPage = () => {
     return (
         <div className="flex flex-col items-center justify-center h-screen pb-[50px]">
-            <div className="gap-2 grid grid-cols-2 sm:grid-cols-3 gap-10">
+            <div className="gap-2 grid grid-cols-2 sm:grid-cols-3 gap-[20px]">
                     {products.map((product) => (
                         <Card shadow="sm" key={product.id} isPressable onPress={() => console.log("item pressed")} className="p-[10px]">
                             <CardBody className="overflow-visible p-0">

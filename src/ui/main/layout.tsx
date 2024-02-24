@@ -1,7 +1,7 @@
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NextUIProvider, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@nextui-org/react";
 import { BagHandleOutline, CafeOutline, ChevronDownOutline, ColorPaletteOutline, GameControllerOutline, ShirtOutline } from "react-ionicons";
 import { useNavigate } from 'react-router-dom';
-import fullLogo from '/image/brand/full_logo.svg?url';
+import shopLogo from '/image/brand/shop_logo.png?url';
 
 import { ReactNode } from 'react';
 
@@ -14,10 +14,9 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
         <NextUIProvider navigate={navigate} className={themeMode}>
             <div className="text-foreground bg-background w-screen h-screen">
                 <Navbar shouldHideOnScroll className="w-full">
-                    <NavbarBrand>
+                    <NavbarBrand as={Link} href={'/'}>
                         <div className="flex flex-row items-end justify-center gap-3">
-                            <img src={fullLogo} alt="alt" width={120}/>
-                            <p className="text-[22px] font-semibold">shop.</p>
+                            <img src={shopLogo} alt="alt" width={169}/>
                         </div>
                         
                         {/* <p>reFilc</p> */}
@@ -29,8 +28,8 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
                                 <DropdownTrigger>
                                     <Button
                                         disableRipple
-                                        className="p-0 bg-transparent data-[hover=true]:bg-transparent outline-none border-none text-[16px]"
-                                        endContent={<ChevronDownOutline width={'16px'} color={'text-foreground'} />}
+                                        className="p-0 bg-transparent data-[hover=true]:bg-transparent outline-none border-none text-[16px] text-textsec"
+                                        endContent={<ChevronDownOutline width={'14px'} color={'text-textsec'} />}
                                         radius="sm"
                                         variant="light"
                                     >
@@ -62,8 +61,8 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
                                 <DropdownTrigger>
                                     <Button
                                         disableRipple
-                                        className="p-0 bg-transparent data-[hover=true]:bg-transparent outline-none border-none text-[16px]"
-                                        endContent={<ChevronDownOutline width={'16px'} color={'text-foreground'} />}
+                                        className="p-0 bg-transparent data-[hover=true]:bg-transparent outline-none border-none text-[16px] text-textsec"
+                                        endContent={<ChevronDownOutline width={'14px'} color={'text-textsec'} />}
                                         radius="sm"
                                         variant="light"
                                     >
@@ -109,7 +108,7 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
                             <Button as={Link}
                                 href="/all-products"
                                 disableRipple
-                                className="p-0 bg-transparent data-[hover=true]:bg-transparent outline-none border-none text-[16px] data-[hover=true]:text-foreground text-foreground"
+                                className="p-0 bg-transparent data-[hover=true]:bg-transparent outline-none border-none text-[16px] data-[hover=true]:text-foreground text-textsec"
                                 radius="sm"
                                 variant="light"
                             >
@@ -123,12 +122,12 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
                                 href="/cart"
                                 className="p-0 outline-none border-none text-[16px] flex items-center justify-center"
                             >
-                                <BagHandleOutline color={'foreground'} cssClasses={'text-foreground'} />
+                                <BagHandleOutline  color={'secondary'} cssClasses={'text-secondary'} />
                             </Link>
                         </NavbarItem>
                         <NavbarItem>
-                            <Button as={Link} color="primary" href="/auth/login" variant="flat">
-                                Belépés
+                            <Button as={Link} className="rounded-full bg-secondary text-white" size="sm" href="/auth/login" variant="flat">
+                                <p className="text-white font-bold">Belépés</p>
                             </Button>
                         </NavbarItem>
                     </NavbarContent>

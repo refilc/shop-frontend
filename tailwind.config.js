@@ -17,11 +17,17 @@ export default {
     light: {
       colors: {
         primary: "#0072f5",
+        secondary: "#0E275A",
+        text: "#011234",
+        textsec: "#0A1C4180",
       }
     },
     dark: {
       colors: {
         primary: "#0072f5",
+        secondary: "#0E275A",
+        text: "#011234",
+        textsec: "#0A1C4180",
       }
     },
   },},)],
