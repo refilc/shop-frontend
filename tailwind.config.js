@@ -20,6 +20,8 @@ export default {
         secondary: "#0E275A",
         text: "#011234",
         textsec: "#0A1C4180",
+        background: "#e3ebfb",
+        textblue: "#243F76",
       }
     },
     dark: {
@@ -28,6 +30,8 @@ export default {
         secondary: "#0E275A",
         text: "#011234",
         textsec: "#0A1C4180",
+        background: "#494d53",
+        textblue: "#243F76",
       }
     },
   },},)],

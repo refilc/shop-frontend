@@ -1,5 +1,6 @@
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NextUIProvider, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@nextui-org/react";
-import { BagHandleOutline, CafeOutline, ChevronDownOutline, ColorPaletteOutline, GameControllerOutline, ShirtOutline } from "react-ionicons";
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, NextUIProvider } from "@nextui-org/react";
+// import { BagHandleOutline, CafeOutline, ChevronDownOutline, ColorPaletteOutline, GameControllerOutline, ShirtOutline } from "react-ionicons";
+import { BagHandleOutline } from "react-ionicons";
 import { useNavigate } from 'react-router-dom';
 import shopLogo from '/image/brand/shop_logo.png?url';
 
@@ -15,7 +16,7 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
             <div className="text-foreground bg-background w-screen h-screen">
                 <Navbar shouldHideOnScroll className="w-full">
                     <NavbarBrand as={Link} href={'/'}>
-                        <div className="flex flex-row items-end justify-center gap-3">
+                        <div className="flex flex-row items-end justify-center gap-3 select-none">
                             <img src={shopLogo} alt="alt" width={169}/>
                         </div>
                         
@@ -23,7 +24,7 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
                     </NavbarBrand>
                     <NavbarContent className="hidden sm:flex gap-4" justify="center">
                         {/* collections */}
-                        <Dropdown className={themeMode}>
+                        {/* <Dropdown className={themeMode}>
                             <NavbarItem>
                                 <DropdownTrigger>
                                     <Button
@@ -54,9 +55,9 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
                                     reDraw it!
                                 </DropdownItem>
                             </DropdownMenu>
-                        </Dropdown>
+                        </Dropdown> */}
                         {/* categories */}
-                        <Dropdown className={themeMode}>
+                        {/* <Dropdown className={themeMode}>
                             <NavbarItem>
                                 <DropdownTrigger>
                                     <Button
@@ -103,7 +104,7 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
                                     Eszközök
                                 </DropdownItem>
                             </DropdownMenu>
-                        </Dropdown>
+                        </Dropdown> */}
                         <NavbarItem>
                             <Button as={Link}
                                 href="/all-products"
