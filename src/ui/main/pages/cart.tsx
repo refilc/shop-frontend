@@ -81,7 +81,7 @@ const CartPage = () => {
 
     // create own session, open payment method selection
     const createCheckoutSession = async (): Promise<boolean> => {
-        return fetch("https://api.refilc.hu/v4/shop/create-checkout", {
+        return fetch("https://api.refilc.hu/v4/shop/pay/create-checkout", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ const CartPage = () => {
             body: JSON.stringify({ items: cartItems }),
         }).then(async (res) => {
             if (res.ok) {
-                localStorage.setItem("checkout_session_token", (await res.json())["token"]);
+                localStorage.setItem("checkout_session_token", (await res.json())["data"]["checkout_session"]["secret_token"]);
                 localStorage.removeItem("cart_items");
 
                 return true;

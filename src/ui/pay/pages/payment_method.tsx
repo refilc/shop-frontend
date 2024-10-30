@@ -7,12 +7,12 @@ const PaymentMethodPage = () => {
 
     const paymentRequest = async (gateway: string): Promise<boolean> => {
         // start payment
-        return fetch('https://api.refilc.hu/v4/shop/start-payment', {
+        return fetch('https://api.refilc.hu/v4/shop/pay/start-payment', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ gateway: gateway, token: localStorage.getItem("checkout_session_token") }),
+            body: JSON.stringify({ payment_gateway: gateway, secret_token: localStorage.getItem("checkout_session_token") }),
         }).then(async (res) => {
             if (res.ok) {
                 const url = (await res.json())["data"]["payment_url"];
