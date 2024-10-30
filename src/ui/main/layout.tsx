@@ -11,6 +11,9 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
 
     const themeMode = window.localStorage.getItem('settings.thememode') ?? 'light';
 
+    let cartItems = localStorage.getItem("cart_items");
+    let cartItemCount = cartItems ? cartItems.split(";").length : 0;
+
     return (
         <NextUIProvider navigate={navigate} className={themeMode}>
             <div className="text-foreground bg-background w-screen h-screen">
@@ -121,9 +124,10 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
                         <NavbarItem>
                             <Link
                                 href="/cart"
-                                className="p-0 outline-none border-none text-[16px] flex items-center justify-center"
+                                className="p-0 outline-none border-none text-[16px] flex items-center justify-center relative"
                             >
                                 <BagHandleOutline  color={'secondary'} cssClasses={'text-secondary'} />
+                                <span className="absolute top-[-6px] right-[-6px] bg-primary text-white text-xs rounded-full px-[5px]" id="cart-item-count">{(cartItemCount ?? 0) < 1 ? "" : cartItemCount}</span>
                             </Link>
                         </NavbarItem>
                         <NavbarItem>

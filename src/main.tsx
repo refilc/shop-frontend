@@ -7,6 +7,12 @@ import CollectionsPage from './ui/main/pages/collections.tsx';
 import HomePage from './ui/main/pages/home.tsx';
 import AllProductsPage from './ui/main/pages/all_products.tsx';
 import ProductPage from './ui/main/pages/product.tsx';
+import CartPage from './ui/main/pages/cart.tsx';
+
+import 'react-toastify/dist/ReactToastify.min.css';
+import { ToastContainer } from 'react-toastify';
+import PayLayout from './ui/pay/layout.tsx';
+import PaymentMethodPage from './ui/pay/pages/payment_method.tsx';
 
 const OAUTH_URI = 'https://qwid.qwit.hu/oauth2/authorize?client_id=refilc_web_store&response_type=code&scope=user.public.read%2Cuser.private.read&redirect_uri=https%3A%2F%2Fshop.refilc.hu%2Fauth%2Fcallback';
 
@@ -55,7 +61,12 @@ const router = createBrowserRouter([
   },
   {
     path: '/cart',
-    element: <MainLayout><HomePage /></MainLayout>,
+    element: <MainLayout><CartPage /></MainLayout>,
+  },
+  // pay
+  {
+    path: '/pay/payment-method',
+    element: <PayLayout><PaymentMethodPage /></PayLayout>,
   },
   // auth
   {
@@ -87,5 +98,6 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <RouterProvider router={router} />
+    <ToastContainer />
   </React.StrictMode>,
 )
