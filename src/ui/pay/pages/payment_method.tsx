@@ -1,10 +1,8 @@
 import { CardOutline, LogoPaypal } from "react-ionicons";
-import { useNavigate } from "react-router-dom";
+import { redirect } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const PaymentMethodPage = () => {
-    const navigate = useNavigate();
-
     const paymentRequest = async (gateway: string): Promise<boolean> => {
         // start payment
         return fetch('https://api.refilc.hu/v4/shop/pay/start-payment', {
@@ -34,7 +32,8 @@ const PaymentMethodPage = () => {
             if (success) {
                 const payUrl = localStorage.getItem("checkout_payment_url");
                 if (payUrl) {
-                    navigate(payUrl);
+                    window.location.assign(payUrl);
+                    // redirect(payUrl);
                 }
             }
         });
@@ -51,7 +50,8 @@ const PaymentMethodPage = () => {
             if (success) {
                 const payUrl = localStorage.getItem("checkout_payment_url");
                 if (payUrl) {
-                    navigate(payUrl);
+                    window.location.assign(payUrl);
+                    // redirect(payUrl);
                 }
             }
         });

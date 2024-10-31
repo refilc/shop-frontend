@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Text } from "react-ionicons";
 import { toast } from "react-toastify";
 
 interface Item {
@@ -13,7 +14,7 @@ interface Item {
 }
 
 interface Order {
-    created_at: Date;
+    created_at: string;
     public_id: string;
     order_id: string;
     checkout_session_id: string;
@@ -79,10 +80,10 @@ const OrdersPage = () => {
             <div className="flex flex-row items-center justify-center gap-8">
                 <h1>Order List</h1>
                 <div className="flex flex-row items-center justify-center gap-4">
-                    <button onClick={() => {fetchOrders('')}}>All</button>
-                    <button onClick={() => {fetchOrders('accepted')}}>Accepted (paid, waiting for completion)</button>
-                    <button onClick={() => {fetchOrders('shipped')}}>Shipped (completed, waiting for arrival)</button>
-                    <button onClick={() => {fetchOrders('failed')}}>Failed (unpaid or cancelled)</button>
+                    <button className="bg-neutral-800 text-white" onClick={() => {fetchOrders('')}}>All</button>
+                    <button className="bg-neutral-800 text-white" onClick={() => {fetchOrders('accepted')}}>Accepted (paid, waiting for completion)</button>
+                    <button className="bg-neutral-800 text-white" onClick={() => {fetchOrders('shipped')}}>Shipped (completed, waiting for arrival)</button>
+                    <button className="bg-neutral-800 text-white" onClick={() => {fetchOrders('failed')}}>Failed (unpaid or cancelled)</button>
                 </div>
             </div>
             <table>
@@ -99,12 +100,16 @@ const OrdersPage = () => {
                 <tbody>
                     {orders.map((o, _) => (
                         <tr key={o.order_details.public_id}>
-                            <td>{o.order_details.state}</td>
-                            <td>{o.order_details.created_at.toDateString()}</td>
-                            <td>{o.order_details.total_amount.toString()} € (~{o.order_details.total_amount*400} HUF)</td>
-                            <td>{o.order_details.shipping_method.replace('_', ' ')}</td>
-                            <td>{o.order_items.map((i) => `${i.product_name} x ${i.quantity}`).join('\n')}</td>
-                            <td>{o.order_details.shipping_address}</td>
+                            <td className="px-[5px]" style={o.order_details.state == "accepted" ? {color: "#ffac11"} : {}}>{o.order_details.state}</td>
+                            <td className="px-[5px]">{(new Date(o.order_details.created_at)).toDateString()}</td>
+                            <td className="px-[5px]">
+                                <p className="whitespace-pre-line text-center">{o.order_details.total_amount.toString()} €{"\n"} (~{o.order_details.total_amount*400} HUF)</p>
+                            </td>
+                            <td className="px-[5px]">{o.order_details.shipping_method.replace(/_/g, ' ')}</td>
+                            <td className="px-[5px]">
+                                <p className="whitespace-pre-line">{o.order_items.map((i) => `${i.quantity} x ${i.product_name}`).join('\n')}</p>
+                            </td>
+                            <td className="px-[5px]">{o.order_details.shipping_address}</td>
                         </tr>
                     ))}
                 </tbody>
