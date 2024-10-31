@@ -102,12 +102,12 @@ const CartPage = () => {
     const showToastThenNavigateToCheckout = () => {
         toast.promise(createCheckoutSession(), {
             pending: 'Fizetés megkezdése...',
-            success: 'Átirányítás a fizetési oldalra...',
+            success: 'Átirányítás...',
             error: 'Hiba történt a fizetés megkezdése közben.',
             
         }, {theme: "light", autoClose: 3000, position: "bottom-right"},).then((success) => {
             if (success) {
-                navigate('/pay/payment-method');
+                navigate('/pay/shipping-method');
             }
         });
     }
