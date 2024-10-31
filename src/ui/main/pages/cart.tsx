@@ -13,6 +13,7 @@ interface Product {
     description?: string;
     cartId?: string;
     count: number;
+    stripePriceId: string;
 }
 
 const CartPage = () => {
