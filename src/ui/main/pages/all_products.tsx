@@ -60,7 +60,7 @@ const AllProductsPage = () => {
     return (
         <div className="flex flex-col items-center justify-center h-max pb-[50px]">
             <h1 className="text-foreground text-[40px] font-[700] mt-[80px] mb-[32px]">Összes termék</h1>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-[24px] w-max">
+            <div className="grid grid-cols-4 md:grid-cols-2 sm:grid-cols-1 gap-[24px] w-max">
                     {products.map((product) => (
                         <div className="relative">
                             <div className="flex flex-col items-center justify-center absolute right-[20px] top-[20px] z-[20] gap-[10px]">

@@ -16,7 +16,7 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
 
     return (
         <NextUIProvider navigate={navigate} className={themeMode}>
-            <div className="text-foreground bg-background w-screen h-screen">
+            <div className="text-foreground bg-background w-screen h-full min-h-screen">
                 <Navbar shouldHideOnScroll className="w-full">
                     <NavbarBrand as={Link} href={'/'}>
                         <div className="flex flex-row items-end justify-center gap-3 select-none">
