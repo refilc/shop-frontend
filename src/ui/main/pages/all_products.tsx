@@ -60,7 +60,7 @@ const products: Product[] = [
         colors: ['#217AFF'], 
         description: "10 db kék, vízálló, hőálló, tépésálló reFilc matricát tartalmazó matricacsomag.", 
         count: 1, 
-        stripePriceId: "price_rfm_rf-sticker-pack-blue", 
+        stripePriceId: "price_1P4oNJGg3L8DCVFDbDCvkCwM", 
     },
     { 
         publicId: 'rf-sticker-pack-blue-25', 
@@ -70,7 +70,7 @@ const products: Product[] = [
         colors: ['#217AFF'], 
         description: "25 db kék, vízálló, hőálló, tépésálló reFilc matricát tartalmazó matricacsomag.", 
         count: 1, 
-        stripePriceId: "price_rfm_rf-sticker-pack-blue-25", 
+        stripePriceId: "price_1P4oQ1Gg3L8DCVFDJlNfrQmp", 
     },
     { 
         publicId: 'rf-sticker-pack-blue-50', 
@@ -80,7 +80,7 @@ const products: Product[] = [
         colors: ['#217AFF'], 
         description: "50 db kék, vízálló, hőálló, tépésálló reFilc matricát tartalmazó matricacsomag.", 
         count: 1, 
-        stripePriceId: "price_rfm_rf-sticker-pack-blue-50", 
+        stripePriceId: "price_1P4oWUGg3L8DCVFDQNf3dKB6", 
     },
     // { id: 2, title: "reFilc Pulcsi - kapucni nélkül", price: 69.99, image: "/image/product/pen_jumper_black.png", alertTitle: "5 maradt", colors: ['#000', '#fff', '#217AFF'], },
     // { publicId: 'rf-mug-white-base', title: "reFilc Pen Bögre", price: 420.49, image: "/image/product/mug_white_lightblue.png", colors: ['#000', '#fff', '#217AFF', '#55D933', '#FFC046'], },
