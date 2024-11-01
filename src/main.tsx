@@ -18,7 +18,7 @@ import FoxpostSelectorPage from './ui/pay/pages/foxpost_selector.tsx';
 import AdminLayout from './ui/admin/layout.tsx';
 import OrdersPage from './ui/admin/pages/orders.tsx';
 
-const OAUTH_URI = 'https://qwid.qwit.hu/oauth2/authorize?client_id=refilc_web_store&response_type=code&scope=user.public.read%2Cuser.private.read&redirect_uri=https%3A%2F%2Fshop.refilc.hu%2Fauth%2Fcallback';
+const OAUTH_URI = 'https://qwid.qwit.dev/oauth2/authorize?client_id=1a57457f-a1e3-4326-a4ae-996de63ecba4&response_type=code&scope=*&redirect_uri=https://shop.refilc.hu/oauth2-callback/qwid';
 
 const STRIPE_URLS: { [key: string]: string } = {
   "rf-sticker-pack-blue": "https://buy.stripe.com/aEU01d6MN8bYaPeeUU",
@@ -97,6 +97,40 @@ const router = createBrowserRouter([
     path: '/login',
     loader: () => {
       return redirect(OAUTH_URI);
+    },
+  },
+  {
+    path: '/oauth2-callback/qwid',
+    element: <div>loading...</div>,
+    loader: async ({ request }) => {
+      const searchParams = new URL(request.url).searchParams;
+      const code = searchParams.get("code");
+
+      const result = await fetch('https://qwid.qwit.dev/oauth2/token', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: `grant_type=authorization_code&code=${code}&redirect_uri=https://shop.refilc.hu/oauth2-callback/qwid&client_id=1a57457f-a1e3-4326-a4ae-996de63ecba4&client_secret=idguYAMteIe1p6ubYW9pL0gt`
+      });
+
+      const json = await result.json();
+      // console.log(json);
+
+      localStorage.setItem('access_token', json['access_token']);
+
+      const userResponse = await fetch('https://qwid.qwit.hu/api/me/user-info', {
+        headers: {
+          'Authorization': `Bearer ${json['access_token']}`
+        }
+      });
+
+      const userJson = await userResponse.json();
+      const user = userJson['data']['user'];
+
+      localStorage.setItem('active_user', JSON.stringify(user));
+
+      return redirect(user['is_admin'] == true ? '/admin/orders' : '/');
     },
   },
   // {
