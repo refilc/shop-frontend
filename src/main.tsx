@@ -119,7 +119,7 @@ const router = createBrowserRouter([
 
       localStorage.setItem('access_token', json['access_token']);
 
-      const userResponse = await fetch('https://qwid.qwit.hu/api/me/user-info', {
+      const userResponse = await fetch('https://qwid.qwit.hu/api/oauth2/me/user-info', {
         headers: {
           'Authorization': `Bearer ${json['access_token']}`
         }

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Text } from "react-ionicons";
 import { toast } from "react-toastify";
 
 interface Item {
