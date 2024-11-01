@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 interface Item {
@@ -31,6 +32,8 @@ interface OrderResponse {
 }
 
 const OrdersPage = () => {
+    const navigate = useNavigate();
+
     const [orders, setOrders] = useState<OrderResponse[]>([]);
 
     const fetchOrders = async (state: string) => {
@@ -84,6 +87,7 @@ const OrdersPage = () => {
                     <button className="bg-neutral-800 text-white" onClick={() => {fetchOrders('shipped')}}>Shipped (completed, waiting for arrival)</button>
                     <button className="bg-neutral-800 text-white" onClick={() => {fetchOrders('failed')}}>Failed (unpaid or cancelled)</button>
                 </div>
+                <button className="bg-red-500 text-white" onClick={() => {navigate('/auth/logout')}}>Sign out</button>
             </div>
             <table>
                 <thead>

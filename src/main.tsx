@@ -133,6 +133,24 @@ const router = createBrowserRouter([
       return redirect(user['is_admin'] == true ? '/admin/orders' : '/');
     },
   },
+  {
+    path: '/auth/logout',
+    loader: () => {
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('active_user');
+
+      return redirect('/');
+    },
+  },
+  {
+    path: '/logout',
+    loader: () => {
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('active_user');
+
+      return redirect('/');
+    },
+  },
   // {
   //   path: '/auth/callback',
   //   loader: async ({ params }) => {
