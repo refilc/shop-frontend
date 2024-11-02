@@ -77,6 +77,56 @@ const OrdersPage = () => {
         fetchOrders('');
     }, []);
 
+    // create foxpost parcel from order
+    const createParcel = async (orderPublicId: string, packageSize: string) => {
+        toast.info('Creating FoxPost parcel...', {
+            position: "bottom-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+        });
+
+        const response = await fetch('https://api.refilc.hu/v4/shop/admin/orders/create-parcel', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('access_token'),
+            },
+            body: JSON.stringify({
+                order_public_id: orderPublicId,
+                package_size: packageSize,
+            }),
+        });
+
+        if (response.ok) {
+            toast.success('FoxPost parcel created!', {
+                position: "bottom-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
+        } else {
+            toast.error('Failed to create FoxPost parcel!', {
+                position: "bottom-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+            });
+        }
+    }
+
     return (
         <div className="flex flex-col items-start justify-start w-screen h-screen text-white bg-black">
             <div className="flex flex-row items-center justify-center gap-8">
@@ -98,12 +148,13 @@ const OrdersPage = () => {
                         <th>Shipping Method</th>
                         <th>Items</th>
                         <th>Shipping Address</th>
+                        <th>Create FoxPost Parcel</th>
                     </tr>
                 </thead>
                 <tbody>
                     {orders.map((o, _) => (
                         <tr key={o.order_details.public_id}>
-                            <td className="px-[5px]" style={o.order_details.state == "accepted" ? {color: "#ffac11"} : {}}>{o.order_details.state}</td>
+                            <td className="px-[5px]" style={o.order_details.state == "accepted" ? {color: "#ffac11"} : (o.order_details.state == "ready_to_ship" ? {color: "#1553e6"} : {})}>{o.order_details.state}</td>
                             <td className="px-[5px]">{(new Date(o.order_details.created_at)).toDateString()}</td>
                             <td className="px-[5px]">
                                 <p className="whitespace-pre-line text-center">{o.order_details.total_amount.toString()} €{"\n"} (~{o.order_details.total_amount*400} HUF)</p>
@@ -113,6 +164,22 @@ const OrdersPage = () => {
                                 <p className="whitespace-pre-line">{o.order_items.map((i) => `${i.quantity} x ${i.product_name}`).join('\n')}</p>
                             </td>
                             <td className="px-[5px]">{o.order_details.shipping_address}</td>
+                            <td>
+                                <select name="package-size" id="package-size">
+                                    <option value="xs">XS</option>
+                                    <option value="s">S</option>
+                                    <option value="m">M</option>
+                                    <option value="l">L</option>
+                                    <option value="xl">XL</option>
+                                </select>
+                                <button className="bg-blue-500 text-white" onClick={() => {
+                                    createParcel(
+                                        o.order_details.public_id,
+                                        (document.getElementById("package-size") as HTMLSelectElement).value,
+                                    );
+                                }}>Create</button>
+                                {/* <button className="bg-green-500 text-white" onClick={() => {navigate('/admin/orders/' + o.order_details.public_id)}}>Details</button> */}
+                            </td>
                         </tr>
                     ))}
                 </tbody>
