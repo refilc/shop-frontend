@@ -165,7 +165,7 @@ const OrdersPage = () => {
                             </td>
                             <td className="px-[5px]">{o.order_details.shipping_address}</td>
                             <td>
-                                <select name="package-size" id="package-size">
+                                <select name="package-size" id="package-size" defaultChecked={true} defaultValue={"xs"} title="Package size...">
                                     <option value="xs">XS</option>
                                     <option value="s">S</option>
                                     <option value="m">M</option>
