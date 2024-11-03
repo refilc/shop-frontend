@@ -90,7 +90,7 @@ const OrdersPage = () => {
             theme: "dark",
         });
 
-        const response = await fetch('https://api.refilc.hu/v4/shop/admin/orders/create-parcel', {
+        await fetch('https://api.refilc.hu/v4/shop/admin/orders/create-parcel', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -100,31 +100,33 @@ const OrdersPage = () => {
                 order_public_id: orderPublicId,
                 package_size: packageSize,
             }),
-        });
+        }).then(async (response)  => {
+            if (response.ok) {
+                toast.success('FoxPost parcel created!', {
+                    position: "bottom-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            } else {
+                console.error(await response.json());
 
-        if (response.ok) {
-            toast.success('FoxPost parcel created!', {
-                position: "bottom-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-            });
-        } else {
-            toast.error('Failed to create FoxPost parcel!', {
-                position: "bottom-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-            });
-        }
+                toast.error('Failed to create FoxPost parcel!', {
+                    position: "bottom-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                });
+            }
+        });
     }
 
     return (
