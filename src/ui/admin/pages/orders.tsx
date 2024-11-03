@@ -148,6 +148,7 @@ const OrdersPage = () => {
                         <th>Shipping Method</th>
                         <th>Items</th>
                         <th>Shipping Address</th>
+                        <th>Order ID</th>
                         <th>Create FoxPost Parcel</th>
                     </tr>
                 </thead>
@@ -164,6 +165,7 @@ const OrdersPage = () => {
                                 <p className="whitespace-pre-line">{o.order_items.map((i) => `${i.quantity} x ${i.product_name}`).join('\n')}</p>
                             </td>
                             <td className="px-[5px]">{o.order_details.shipping_address}</td>
+                            <td className="px-[5px]">#{o.order_details.order_id.toUpperCase()}-HU</td>
                             <td>
                                 <select name="package-size" id="package-size" defaultChecked={true} defaultValue={"xs"} title="Package size...">
                                     <option value="xs">XS</option>
